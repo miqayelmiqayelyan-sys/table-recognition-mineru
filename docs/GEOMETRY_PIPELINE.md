@@ -112,8 +112,8 @@ but sits against the reported box is a **graze** and only counted in a warning. 
 split the check cried wolf: on one six-table document it reported 49 problems where only 8
 were lines through text.
 
-The pipeline runs this on the final `TableField` before upload, so bad geometry cannot reach
-the platform silently. It logs but does not block — a flagged table is still uploaded.
+The pipeline runs this on the final grid before export. It logs but does not block — a flagged
+table is still written out.
 
 Current result on both reference documents: **0 of 58 edges** cut text on
 `6a9e93842aaee9842d53fb4e`, **0 of 256** on `6aab87ebaa31f3c09763b78d`. For reference, the
@@ -124,15 +124,8 @@ earlier per-cell approaches crossed text on 64–94% of horizontal edges.
 ```bash
 cd table-recognition-mineru && source .venv/bin/activate
 
-# Production run → upload
-DOCUMENT_ID=6a9e93842aaee9842d53fb4e python3 genie_local.py
-
-# Visual check: green = clean edge, red = edge cutting OCR ink
-DOCUMENT_ID=6a9e93842aaee9842d53fb4e python3 scripts/render_grid_overlay.py
-# → output/grid_overlay/page<N>.png
-
-# Numeric audit against every page OCR word
-DOCUMENT_ID=6a9e93842aaee9842d53fb4e python3 scripts/audit_grid_vs_page_ocr.py
+python scripts/run_pdf.py samples/sample_balance_sheet.pdf
+# → output/final/, output/run_summary.json
 
 pytest -q
 ```
