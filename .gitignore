@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+.env
+genie_local.py
+output/
+logs/
+*.log
+.pytest_cache/
+.mypy_cache/
+samples/*.pdf
+!samples/.gitkeep
+!samples/sample_balance_sheet.pdf

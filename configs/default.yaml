@@ -1,0 +1,22 @@
+# table-recognition-mineru — MinerU document parsing configuration
+
+api:
+  host: https://uat-api.cognaize.com
+
+mineru:
+  backend: pipeline          # pipeline | hybrid-auto-engine | vlm-auto-engine
+  parse_method: auto         # auto | txt | ocr
+  lang: en
+  formula_enable: false   # disable formula/MFR model for faster table-focused runs
+  table_enable: true
+  start_page_id: 0
+  end_page_id: null          # null = all pages
+
+pipeline:
+  debug: true
+  output_dir: output
+  diagnostics_subdirs:
+    raw: raw
+    parsed: parsed
+    tables: tables
+    final: final
